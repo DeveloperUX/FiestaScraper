@@ -28,15 +28,15 @@ class Scrapider(Spider):
             item['handle'] = handle
             item['url'] = response.urljoin(link)
 
-            request = scrapy.Request(item['url'], callback=self.parse_image)
+            request = scrapy.Request(url=item['url'], dont_filter=True, callback=self.parse_image)
             request.meta['item'] = item
 
-            return request
+            yield request
 
     def parse_image(self, response):
-        print response.url
-        return response.url
-        # for post_title in response.xpath('//*[@id="content"]/div[1]/div[6]/p[3]/a/img').extract():
-        #     print post_title
-        #     return {'title': post_title}
-        
+        item = response.meta['item'];
+
+        item['image'] = response.xpath('//*[@id="content"]//img/@src')[0].extract()
+        print item['image']
+
+        return item
