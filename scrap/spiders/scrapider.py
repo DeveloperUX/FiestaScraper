@@ -36,7 +36,7 @@ class Scrapider(Spider):
     def parse_image(self, response):
         item = response.meta['item'];
 
-        item['image'] = response.xpath('//*[@id="content"]//img/@src')[0].extract()
+        item['image'] = response.xpath('//*[@id="content"]//a/img/@src')[0].extract()
         print item['image']
 
         return item
