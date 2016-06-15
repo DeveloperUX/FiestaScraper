@@ -12,9 +12,11 @@ This should install both Python and along with it, PIP.
 
 ```pip install scrapy```
 
-### Run the Scraper!
+### Run the scraper project!
 
-```scrapy runspider SPIDERFILE.py```
+Use the ```crawl``` command with the name of the Spider, in our case Scrapider.
+
+```scrapy crawl Scrapider```
 
 
 Sit back and watch the fireworks...
